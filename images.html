@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>IMAGES</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+img {
+ border-radius: 8px;
+ width:200px;
+height:200px;
+}
+body{
+background-color:black
+}
+.img-hover-zoom--colorize{
+float: left;
+  width: 23.33%;
+  padding: 5px;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.img-hover-zoom--colorize img {
+  transition: transform .5s, filter 1.5s ease-in-out;
+  filter: grayscale(100%);
+}
+
+/* The Transformation */
+.img-hover-zoom--colorize:hover img {
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+</style>
+</head>
+<body>
+<div class= "row">
+<div class="img-hover-zoom--colorize">
+<img src=img1.jpg >
+</div>
+<div class="img-hover-zoom--colorize">
+<img src=img2.jpg >
+</div>
+<div class="img-hover-zoom--colorize">
+<img src=img3.jpg >
+</div>
+<div class="img-hover-zoom--colorize">
+<img src=img4.jpg >
+</div>
+
+<div class="img-hover-zoom--colorize">
+<img src=img5.jpg >
+</div>
+<div class="img-hover-zoom--colorize">
+<img src=img6.jpg>
+</div>
+<div class="img-hover-zoom--colorize">
+<img src=img7.jpg>
+</div>
+<div class="img-hover-zoom--colorize">
+<img src=img8.jpg >
+</div>
+</div>
+</body>
+</html>
