@@ -50,7 +50,11 @@ if(isset($_POST['submit'])){
 </head>
 <body class="body">
     <a class="btn back-btn" href="index.php">
+<<<<<<< HEAD
         <img src="images/arrow-left2.svg" alt="back Btn" class="back-img">
+=======
+        <img src="arrow-left2.svg" alt="back Btn" class="back-img">
+>>>>>>> cc906173c0ba3894ce1813c0a5baa814e2df11a1
     </a>
 	<header class="header">
 		<div class="top-bar"></div>
