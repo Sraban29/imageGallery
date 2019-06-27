@@ -2,15 +2,9 @@
 $err = "";
 $msg = "";
 
-// Database configuration	
+// Database configuration
 $status = 1;
-$dbHost     = "localhost";
-$dbUsername = "root";
-$dbPassword = "";
-$dbName     = "drdoproject";
-// Create database connection
-$db = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
-if(mysqli_connect_error()) die("connect failed");
+include('dbConfig.php');
 
 ////////////////////////////////
 
@@ -24,7 +18,7 @@ if (isset($_POST['submit'])){
 		//$createTab = "CREATE TABLE `drdoproject`.`".$title."` ( `filename` VARCHAR(255) NOT NULL , `image` LONGBLOB NOT NULL , PRIMARY KEY (`filename`));";
 			$getId = "SELECT id FROM mastertab WHERE title='".$title."'";
 			$res = mysqli_query($db, $getId);
-			
+
 			if($res){
 				$id = mysqli_fetch_array($res);
 				$id = $id['id'];
@@ -37,14 +31,14 @@ if (isset($_POST['submit'])){
 					$filePath = $_FILES['images']['tmp_name'][$key];
 					$file = addslashes(file_get_contents($filePath));
 					$file_ins_q = "INSERT  INTO imgtab VALUES('',".$id.",".$count.",'".$fileName."','".$file."')";
-					
+
 					if(mysqli_query($db,$file_ins_q)){ $msg = $count." file(s) inserted";$count++;}
 					else echo "failed ins";
 				}
 			}else echo "file upload failed";
 		//echo "<script>alert('File Uploaded successfully')</script>";
 	}
-	else $err .= "<p class='err'>Title exists , Enter different one</p>";		 
+	else $err .= "<p class='err'>Title exists , Enter different one</p>";
 
 }
 
@@ -58,7 +52,10 @@ if (isset($_POST['submit'])){
     <title>Image Gallery</title>
 	<link rel="stylesheet" href="css/index_style.css">
 </head>
-<body>
+<body class="body">
+	<a class="btn back-btn" href="index.php">
+        <img src="arrow-left2.svg" alt="back Btn" class="back-img">
+    </a>
 	<header class="header">
 		<div class="top-bar"></div>
 		<h1 class="heading">Create New Image Gallery</h1>
@@ -66,14 +63,14 @@ if (isset($_POST['submit'])){
 	<div class="container">
 		<p class="msg" style=""><?php echo $msg; ?></p>
 		<form action="" method="post" class="new-upload" enctype="multipart/form-data">
-			<input type="text" name="title" placeholder="Title" class="input-text" /><br>
+			<input type="text" name="title" placeholder="Title" class="input-text" spellcheck="false" /><br>
 			<?php echo $err; ?>
-			<textarea name="desc" placeholder="Description" cols="40" rows="10"></textarea><br>
+			<textarea name="desc" placeholder="Description" cols="40" rows="10" spellcheck="false"></textarea><br>
 			<input type="date" name="date" class="input-text" /><br>
-			<input type="file" name="images[]" multiple accept="image/*"/><br>
+			<input type="file" name="images[]" multiple accept="image/*" style="width: 100%;" /><br>
 			<input type="submit" name="submit" value="Upload" class="btn" />
 			<input type="reset" name="cancel" value="Cancel" class="btn" />
-		</form>	
+		</form>
     </div>
 </body>
 </html>
